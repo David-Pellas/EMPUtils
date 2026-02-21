@@ -1,6 +1,6 @@
 # EMPUtils
 
-**EMPUtils** is a free, open-source Chrome extension that blocks ads, neutralizes trackers, and gives you full visibility into who is watching you browse — all processed locally on your device.
+**EMPUtils** is a free, open-source Chrome extension that blocks ads, neutralizes trackers, and gives you full visibility into who is watching you browse, all processed locally on your device.
 
 ---
 
