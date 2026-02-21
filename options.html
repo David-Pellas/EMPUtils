@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMPUtils Settings</title>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/options.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <span class="logo-text">EMPUtils</span>
+    </div>
+
+    <div class="sidebar-section-label">Trackers Detected</div>
+
+    <div class="stat-card">
+        <div class="stat-row">
+            <span class="stat-label">
+                <span class="stat-dot dot-low"></span>Low
+            </span>
+            <span class="stat-value low" id="stat-low">—</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">
+                <span class="stat-dot dot-medium"></span>Medium
+            </span>
+            <span class="stat-value medium" id="stat-medium">—</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">
+                <span class="stat-dot dot-high"></span>High
+            </span>
+            <span class="stat-value high" id="stat-high">—</span>
+        </div>
+        <div class="stat-total-row">
+            <span class="stat-total-label">Total</span>
+            <span class="stat-total-val" id="stat-total">—</span>
+        </div>
+    </div>
+
+    <p class="sidebar-hint">Analyze a page in the popup to populate these stats.</p>
+</aside>
+
+<main class="main">
+    <div class="page-header">
+        <h1 class="page-title">Settings</h1>
+        <p class="page-subtitle">Manage your EMPUtils preferences and blocked trackers.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="section-title">Whitelisted Websites</span>
+            <div class="section-line"></div>
+        </div>
+        <div class="list-box">
+            <div class="scroll-inner">
+                <div id="popup-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="section-title">Blocked Trackers</span>
+            <div class="section-line"></div>
+        </div>
+        <div class="list-box">
+            <div class="scroll-inner">
+                <div id="tracker-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="section-title">Display &amp; Theme</span>
+            <div class="section-line"></div>
+        </div>
+        <div class="settings-grid">
+            <div class="setting-card">
+                <span class="setting-label">Alert Duration</span>
+                <div class="setting-control">
+                    <input type="number" id="alertDuration" min="1" max="30" value="3">
+                    <span class="number-unit">seconds</span>
+                </div>
+            </div>
+            <div class="setting-card">
+                <span class="setting-label">Theme Color</span>
+                <div class="setting-control color-wrapper">
+                    <div class="color-swatch">
+                        <div class="color-swatch-bg" id="swatchBg" style="background:#2563eb;"></div>
+                        <input type="color" id="themeColor" value="#2563eb">
+                    </div>
+                    <span class="color-hex" id="colorHex">#2563EB</span>
+                </div>
+            </div>
+            <div class="setting-card full-width">
+                <div class="toggle-row">
+                    <div class="toggle-text">
+                        <span class="setting-label">Allow Alerts</span>
+                        <p class="toggle-desc">Show tracker advisory banners when high-risk trackers are detected on a page.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="allowAlerts">
+                        <span class="toggle-track">
+                            <span class="toggle-thumb"></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:14px;">
+            <button id="saveSettings" class="save-btn">Save Preferences</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <span class="section-title">EMPUtils Guide</span>
+            <div class="section-line"></div>
+        </div>
+        <div class="guide-box">
+            <div class="guide-section">
+                <div class="guide-section-title">Adblocking</div>
+                <p class="guide-text">EMPUtils blocks common ad formats like banners, animated images, and embedded video. It checks scripts against a daily updating database of 30,000 known ads to catch anything injected dynamically. Occasionally, legitimate site elements may get caught in the filter, if the issue persists you can disable filtering via the popup's shield icon.</p>
+            </div>
+            <hr class="guide-divider">
+            <div class="guide-section">
+                <div class="guide-section-title">Tracker Prevention</div>
+                <p class="guide-text">Analyze any website in the popup to see its trackers, and use WhoIs to look up domain ownership. Risk levels are LOW, MEDIUM, and HIGH. HIGH indicates trackers likely collecting sensitive data such as cursor position and browsing history, but it's worth keeping in mind that some HIGH-rated trackers (Facebook, Instagram, etc) may be required for site functionality.</p>
+            </div>
+            <hr class="guide-divider">
+            <div class="guide-section">
+                <div class="guide-section-title">Notice</div>
+                <p class="guide-text">Created by David Pellas. Data scrapes from WhoIs, EasyList, and URLHaus. While open source and free to use, please understand that this program is under MIT License.</p>
+            </div>
+        </div>
+    </div>
+
+<div class="section">
+    <div class="section-header">
+        <span class="section-title">Update Log</span>
+        <div class="section-line"></div>
+        <a
+            class="update-log-link"
+            href="https://github.com/David-Pellas/EMPUtils"
+            target="_blank"
+        >
+            GitHub
+        </a>
+    </div>
+
+    <div class="list-box">
+        <div id="update-log">
+            <div class="update-entry">
+                <span class="update-badge">v1.0.0</span>
+                <div class="update-info">
+                    <div class="update-date">02/20/2026</div>
+                    <div class="update-notes">Initial release of EMPUtils.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<script src="javascript/domain-intelligence.js"></script>
+<script src="javascript/options.js"></script>
+</body>
+</html>

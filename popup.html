@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EMPUtils</title>
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+
+  <!-- Left Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-btn active" id="navReport" data-tab="report" data-tip="Privacy Score">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"></line>
+        <line x1="12" y1="20" x2="12" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="14"></line>
+      </svg>
+    </div>
+    <div class="sidebar-btn" id="navTrackers" data-tab="trackers" data-tip="Trackers">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </div>
+    <div style="flex: 1;"></div>
+
+    <div class="sidebar-btn" id="openSettings" data-tip="Settings" style="margin-bottom: 10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <div class="tab-panel" id="tab-trackers">
+      <div class="header">
+        <div class="header-inner">
+          <div class="header-title">
+            <h1>EMPUtils</h1>
+            <p>Version 0.1.0 - Tracker Control Extension</p>
+          </div>
+          <div class="header-icons">
+            <div id="whitelistCurrentSite" class="header-icon-btn" title="Whitelist Current Site">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-label">Unique Domains</div>
+          <div class="stat-number" id="uniqueDomains">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Total Requests</div>
+          <div class="stat-number" id="totalRequests">0</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="analyzeBtn">Manual Analysis</button>
+        <button id="exportBtn">Export CSV</button>
+        <button id="clearBtn">Clear Data</button>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All Traffic</button>
+          <button class="filter-btn" data-filter="tracker">Trackers</button>
+          <button class="filter-btn" data-filter="analytics">Analytics</button>
+          <button class="filter-btn" data-filter="ads">Advertising</button>
+          <button class="filter-btn" data-filter="social">Social</button>
+        </div>
+        <input type="text" id="searchBox" placeholder="Filter by domain name...">
+      </div>
+
+      <div class="results" id="results">
+        <div class="empty-state" style="text-align: center; padding-top: 40px; color: #FFF; font-size: 12px;">
+          Initialize analysis to populate domain registry.
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel active" id="tab-report">
+      <div class="header">
+        <div class="header-inner">
+          <div class="header-title">
+            <h1>EMPUtils</h1>
+            <p>Version 0.1.0 — Privacy Score</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score Ring -->
+      <div class="rpt-score-section">
+        <div class="rpt-score-left">
+          <div class="rpt-ring-wrap">
+            <svg class="rpt-ring-svg" viewBox="0 0 120 120" width="120" height="120">
+              <circle class="rpt-track" cx="60" cy="60" r="50"/>
+              <circle class="rpt-fill" id="rptRingFill" cx="60" cy="60" r="50"/>
+            </svg>
+            <div class="rpt-center">
+              <div class="rpt-center-inner">
+                <span class="rpt-number" id="rptNumber">—</span>
+                <span class="rpt-pct">/ 100</span>
+              </div>
+            </div>
+          </div>
+          <div class="rpt-grade-wrap">
+            <div class="rpt-grade-label" id="rptGrade">—</div>
+            <div class="rpt-grade-sub" id="rptGradeSub">Analyze a page to generate a score</div>
+          </div>
+        </div>
+        <div class="rpt-web-wrap">
+          <svg id="rptWebSvg" class="rpt-web-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150" preserveAspectRatio="xMidYMid meet"></svg>
+          <div id="rptWebTooltip" class="rpt-web-tooltip"></div>
+        </div>
+      </div>
+
+      <div class="rpt-why-bar">Why this score</div>
+      <div class="rpt-reasons" id="rptReasons">
+        <div class="rpt-empty">Switch to the Trackers tab and analyze a page to generate your privacy report.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="domainModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modalDomainName">Registry Details</div>
+          <div id="modalCategory" style="font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 600;">Classification</div>
+        </div>
+        <span class="close-modal" id="closeModal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="info-label">Security Risk Assessment</div>
+        <span id="modalRisk" class="risk-badge">Analyzing...</span>
+
+        <div class="info-label">Entity Owner</div>
+        <div class="info-value" id="modalOwner">-</div>
+
+        <div class="info-label">Functional Purpose</div>
+        <div class="info-value" id="modalPurpose">-</div>
+
+        <div class="info-label">Technical Description</div>
+        <div class="info-value" id="modalDescription" style="line-height: 1.4; color: #475569;">-</div>
+
+        <div class="info-label">Data Transmission Profile</div>
+        <ul class="data-collected-list" id="modalDataCollected"></ul>
+
+        <div class="verification-section" id="verificationSection">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10px; font-weight: 700; color: #475569; text-transform: uppercase;">Registry Verification</span>
+            <button id="verifyButton" class="verify-btn">Run Check</button>
+          </div>
+          <div id="verificationResults" class="verification-results">
+            Click to perform real-time DNS and ownership validation.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="javascript/domain-intelligence.js"></script>
+  <script src="javascript/online-verification.js"></script>
+  <script src="javascript/popup.js"></script>
+  <script src="javascript/report.js"></script>
+
+</body>
+</html>
